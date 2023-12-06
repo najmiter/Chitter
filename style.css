@@ -1,0 +1,51 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  color-scheme: dark;
+  line-height: 1.3rem;
+}
+
+code {
+  display: block;
+  font-family: 'Cascadia Code', monospace;
+}
+
+.constant {
+  color: #00bcd4;
+}
+
+.instructions {
+  color: #dd6f5b;
+  font-weight: bold;
+}
+
+.plain {
+  color: #bfbfbf;
+}
+
+.jumps {
+  color: #c79af1;
+}
+
+.function-label {
+  color: #009acb;
+  font-weight: bold;
+}
+
+.criticals {
+  color: #ff5b6d;
+}
+
+.arithmetics {
+  color: yellowgreen;
+}
+
+.datatypes {
+  color: #d79800;
+}
+
+.registers {
+  color: #70ce71;
+  font-style: italic;
+}
