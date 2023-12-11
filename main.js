@@ -1,7 +1,7 @@
 const Chitter = {
   asm: {
     arithmetics: new Set([
-      "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT",
+      "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
     ]),
     criticals: new Set([
       "RET", "PROC", "ENDP", "END"
