@@ -30,7 +30,6 @@ const Chitter = {
 const hightlight_btn = document.getElementById("btn-highlight");
 hightlight_btn.addEventListener("click", () => {
     // const print = console.log;
-    const DOM = []
 
     const code = document.getElementById("input-text").value.split("\n");
     const print = console.log;
