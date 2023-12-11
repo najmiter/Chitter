@@ -1,51 +1,106 @@
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  color-scheme: dark;
-  line-height: 1.3rem;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	color-scheme: dark;
+	line-height: 1.3rem;
+}
+
+body {
+	margin-inline: 1rem;
+}
+
+main {
+	/* border: 1px solid pink; */
+	display: grid;
+	grid-template-rows: 100px auto;
+	align-items: center;
+	justify-content: center;
+	margin: 0 auto;
+}
+
+#top {
+	text-align: center;
+}
+
+#two-sections {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: 1rem;
+	width: 95vw;
+	/* border: 1px solid pink; */
+}
+
+#input-text {
+	border-radius: 5px;
+	height: 85vh;
+	background-color: #202324;
+	outline: none;
+	border: none;
+	padding: 1rem;
+}
+
+#output-text {
+	height: 85vh;
+	overflow: scroll;
+	background-color: #202324;
+	outline: none;
+	border: none;
+	padding: 1rem;
+	border-radius: 5px;
+}
+
+.texts {
+	width: 100%;
+}
+
+textarea {
+	margin-inline: 1rem;
+	margin-trim: all;
+	width: 95%;
+	resize: none;
 }
 
 code {
-  display: block;
-  font-family: 'Cascadia Code', monospace;
+	display: block;
+	font-family: 'Cascadia Code', monospace;
 }
 
 .constant {
-  color: #00bcd4;
+	color: #00bcd4;
 }
 
 .instructions {
-  color: #dd6f5b;
-  font-weight: bold;
+	color: #dd6f5b;
+	font-weight: bold;
 }
 
 .plain {
-  color: #bfbfbf;
+	color: #bfbfbf;
 }
 
 .jumps {
-  color: #c79af1;
+	color: #c79af1;
 }
 
 .function-label {
-  color: #009acb;
-  font-weight: bold;
+	color: #009acb;
+	font-weight: bold;
 }
 
 .criticals {
-  color: #ff5b6d;
+	color: #ff5b6d;
 }
 
 .arithmetics {
-  color: yellowgreen;
+	color: yellowgreen;
 }
 
 .datatypes {
-  color: #d79800;
+	color: #d79800;
 }
 
 .registers {
-  color: #70ce71;
-  font-style: italic;
+	color: #70ce71;
+	font-style: italic;
 }
