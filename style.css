@@ -79,16 +79,16 @@ code {
 }
 
 .constant {
-	color: #00bcd4;
+	color: #79c0ff;
 }
 
 .instructions {
-	color: #dd6f5b;
+	color: #ec8e2b;
 	font-weight: bold;
 }
 
 .plain {
-	color: #bfbfbf;
+	color: #c8d1d9;
 }
 
 .jumps {
@@ -96,12 +96,12 @@ code {
 }
 
 .function-label {
-	color: #009acb;
+	color: #d2a8ff;
 	font-weight: bold;
 }
 
 .criticals {
-	color: #ff5b6d;
+	color: #f47067;
 }
 
 .arithmetics {
@@ -109,10 +109,10 @@ code {
 }
 
 .datatypes {
-	color: #d79800;
+	color: #8edb8c;
 }
 
 .registers {
-	color: #70ce71;
+	color: #fdad54;
 	font-style: italic;
 }
