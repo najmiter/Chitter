@@ -95,9 +95,10 @@ hightlight_btn.addEventListener("click", () => {
                             spaces = "";
 
                             const t = tokens[++i];
-                            line_.push(
-                                `<span class="function-label">${t}</span>`
-                            );
+                            if (t)
+                                line_.push(
+                                    `<span class="function-label">${t}</span>`
+                                );
                         }
                         break;
                     }
