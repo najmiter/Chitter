@@ -50,6 +50,9 @@ const razor = (string) => {
 const hightlight_btn = document.getElementById("btn-highlight");
 hightlight_btn.addEventListener("click", () => {
     code = document.getElementById("input-text").value.split("\n");
+    const print = console.log;
+    // print(code);
+
     const DOM = [];
 
     for (const line of code) {
