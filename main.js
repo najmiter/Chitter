@@ -4,14 +4,14 @@ const Chitter = {
                 "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
             ]),
             criticals: new Set([
-                  "RET", "PROC", "ENDP", "END"
+                  "RET", "PROC", "ENDP", "END", "INCLUDE",
             ]),
             instructions: new Set([
                   "MOV", "MOVS", "MOVSX", "MOVZX", "CMP",
-                  "PUSH", "POP",
+                  "PUSH", "POP", "PUSHAD", "POPAD",
                   "LEA", "NOP", "HLT", "INT", "LEAVE", "CLC", "STC", "CLD", "STD", "CLI", "STI",
                   "CMPXCHG", "XCHG", "BSWAP", "NOP", "PUSHF", "POPF", "REP", "REPE", "REPZ",
-                  "REPNE", "REPNZ", "CMC", "CWDE", "CDQ", "WAIT", "CBW", "CWD", "INTO", "IRET", "INCLUDE",
+                  "REPNE", "REPNZ", "CMC", "CWDE", "CDQ", "WAIT", "CBW", "CWD", "INTO", "IRET",
                   "OFFSET",
             ]),
             datatypes: new Set([
