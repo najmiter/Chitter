@@ -8,3 +8,4 @@ Highlight and make copyable rich text of your code.
         - [x] Make destination registers recognised. 
         - [x] Keep the original spacing in the output as it is in the input.
         - [ ] Add comments support (single/multi line).
+        - [ ] Highlight string literals (single and double quotes).
