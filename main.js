@@ -12,6 +12,7 @@ const Chitter = {
                   "LEA", "NOP", "HLT", "INT", "LEAVE", "CLC", "STC", "CLD", "STD", "CLI", "STI",
                   "CMPXCHG", "XCHG", "BSWAP", "NOP", "PUSHF", "POPF", "REP", "REPE", "REPZ",
                   "REPNE", "REPNZ", "CMC", "CWDE", "CDQ", "WAIT", "CBW", "CWD", "INTO", "IRET", "INCLUDE",
+                  "OFFSET",
             ]),
             datatypes: new Set([
                   "BYTE", "WORD", "DWORD", "QWORD", "DB", "DW", "DD", "DQ", "REAL"
@@ -27,33 +28,59 @@ const Chitter = {
       }
 }
 
+const razor = (string) => {
+    let array = [];
+    let word = "";
+
+    for (let i = 0; i < string.length; i++) {
+        const char = string.charAt(i);
+        if (char === " " || char === "\t") {
+            if (word !== "") array.push(word);
+            array.push(char);
+            word = "";
+            continue;
+        }
+        word += char;
+    }
+
+    if (word !== "") array.push(word);
+    return array;
+};
+
 const hightlight_btn = document.getElementById("btn-highlight");
 hightlight_btn.addEventListener("click", () => {
     code = document.getElementById("input-text").value.split("\n");
-    const print = console.log;
-    // print(code);
-
     const DOM = [];
 
     for (const line of code) {
-        const tokens = line.match(/[^ ,]+|,/g) ?? line;
+        const tokens = razor(line);
         const line_ = [];
+        print(tokens);
 
+        let spaces = "";
         for (let i = 0; i < tokens.length; i++) {
             let token = tokens[i];
             let klass = "plain";
             let already_been_added = false;
 
+            if (token === " " || token === "\t") {
+                spaces += token;
+                continue;
+            }
+
             if (!isNaN(token)) {
                 klass = "constant";
             } else if (token.endsWith(":")) {
                 klass = "function-label";
-            } else if (tokens[i + 1] === ",") {
+            } else if (token.endsWith(",")) {
                 already_been_added = true;
+                token.replace(",", "");
                 line_.push(
-                    `<span class="registers">${token}<span class="plain">,</span></span>`
+                    `<span class="registers">${token.replace(
+                        ",",
+                        ""
+                    )}<span class="plain">,</span></span>`
                 );
-                i++;
             } else {
                 for (const key of Object.keys(Chitter.asm)) {
                     if (Chitter.asm[key].has(token.toUpperCase())) {
@@ -62,8 +89,10 @@ hightlight_btn.addEventListener("click", () => {
                         if (key === "jumps") {
                             already_been_added = true;
                             line_.unshift(
-                                `<span class="${klass}">${token}</span>`
+                                `${spaces}<span class="${klass}">${token}</span>`
                             );
+
+                            spaces = "";
 
                             const t = tokens[++i];
                             line_.push(
@@ -74,8 +103,10 @@ hightlight_btn.addEventListener("click", () => {
                     }
                 }
             }
-            if (!already_been_added)
-                line_.push(`<span class="${klass}">${token}</span>`);
+            if (!already_been_added) {
+                line_.push(`${spaces}<span class="${klass}">${token}</span>`);
+                spaces = "";
+            }
         }
 
         const newbie = document.createElement("code");
@@ -85,6 +116,8 @@ hightlight_btn.addEventListener("click", () => {
     }
     const output = document.getElementById("output-text");
     output.innerHTML = "";
-    // print(DOM);
-    DOM.forEach((e) => output.appendChild(e));
+    const pre = document.createElement("pre");
+    DOM.forEach((e) => pre.appendChild(e));
+
+    output.appendChild(pre);
 });
