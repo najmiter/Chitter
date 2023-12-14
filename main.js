@@ -23,7 +23,7 @@ const Chitter = {
             registers: new Set([
                   "AL", "BL", "CL", "DL", "AH", "BH", "CH", "DH", 'AX', 'BX', 'CX',
                   'DX', 'EAX', 'EBX', 'ECX', 'EDX', 'RAX', 'RBX', 'RCX', 'RDX',
-                  'DI', 'SI', 'EDI', 'ESI', 'RDI', 'RSI',
+                  'DI', 'SI', 'EDI', 'ESI', 'EBP', 'ESP', 'RBP', 'RSP', 'RDI', 'RSI',
             ]),
       }
 }
