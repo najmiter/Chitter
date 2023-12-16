@@ -1,6 +1,6 @@
 const Chitter = {
       asm: {
-            operators: new Set(["+", "-", "/", "*", '(', ')', "[", "]", '"', "'", ',', '=', '==', '<', '>', '!', '!=', '<=', '>=',]),
+            operators: new Set(["+", "-", "/", "*", '(', ')', "[", "]", '"', "'", ',', '.', '=', '==', '<', '>', '!', '!=', '<=', '>=',]),
             arithmetics: new Set([
                 "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
             ]),
@@ -56,6 +56,7 @@ hightlight_btn.addEventListener("click", () => {
 
     for (const line of code) {
         const tokens = razor(line);
+
         const line_ = [];
 
         let spaces = "";
@@ -89,6 +90,14 @@ hightlight_btn.addEventListener("click", () => {
                 }
 
                 token += quote;
+            } else if (token === ".") {
+                line_.push(
+                    `${spaces}<span class="criticals">.${
+                        tokens[++i] ?? ""
+                    }</span>`
+                );
+                spaces = "";
+                continue;
             } else {
                 for (const key of Object.keys(Chitter.asm)) {
                     if (Chitter.asm[key].has(token.toUpperCase())) {
