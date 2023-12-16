@@ -56,6 +56,7 @@ hightlight_btn.addEventListener("click", () => {
 
     for (const line of code) {
         const tokens = razor(line);
+
         const line_ = [];
 
         let spaces = "";
@@ -103,11 +104,20 @@ hightlight_btn.addEventListener("click", () => {
 
                             spaces = "";
 
-                            const t = tokens[++i];
-                            if (t)
-                                line_.push(
-                                    `<span class="function-label">${t}</span>`
-                                );
+                            let t = tokens[++i];
+                            if (t) {
+                                while (tokens[i] === " ") {
+                                    spaces += " ";
+                                    i += 1;
+                                }
+
+                                t = tokens[i];
+                                if (t)
+                                    line_.push(
+                                        `${spaces}<span class="function-label">${t}</span>`
+                                    );
+                                spaces = "";
+                            }
                         }
                         break; // no need to check further (if anything's left)
                     }
