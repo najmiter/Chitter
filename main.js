@@ -1,6 +1,6 @@
 const Chitter = {
       asm: {
-            operators: new Set(["+", "-", "/", "*", "[", "]", '"', "'", ',', '=', '==', '<', '>', '!', '!=', '<=', '>=',]),
+            operators: new Set(["+", "-", "/", "*", '(', ')', "[", "]", '"', "'", ',', '=', '==', '<', '>', '!', '!=', '<=', '>=',]),
             arithmetics: new Set([
                 "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
             ]),
