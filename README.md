@@ -9,7 +9,7 @@ Highlight and make copyable rich text of your code.
     * TODO:
         - [x] Make destination registers recognised. 
         - [x] Keep the original spacing in the output as it is in the input.
-        - [ ] Highlight registers when used with other operators (`[eax]`, `[ebx+esi]`, etc).
+        - [x] Highlight registers when used with other operators (`[eax]`, `[ebx+esi]`, etc).
         - [ ] Add comments support (single/multi line).
         - [ ] Highlight string literals (single and double quotes).
         - [ ] Make it responsive.
