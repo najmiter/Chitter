@@ -1,4 +1,4 @@
-# Chitter: a syntax highlighter
+# Chitter: a syntax highlighter for assembly
 ---------------------------
 Highlight and make copyable rich text of your code.
 
