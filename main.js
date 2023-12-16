@@ -1,6 +1,6 @@
 const Chitter = {
       asm: {
-            operators: new Set(["+", "-", "/", "*", "[", "]"]),
+            operators: new Set(["+", "-", "/", "*", "[", "]", '"', "'",]),
             arithmetics: new Set([
                 "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
             ]),
@@ -82,6 +82,15 @@ hightlight_btn.addEventListener("click", () => {
                         ""
                     )}<span class="plain">,</span></span>`
                 );
+            } else if (token === '"' || token === "'") {
+                const quote = token;
+                klass = "constant";
+                
+                while (tokens[++i] !== quote && i < tokens.length) {
+                    token += tokens[i];
+                }
+
+                token += quote;
             } else {
                 for (const key of Object.keys(Chitter.asm)) {
                     if (Chitter.asm[key].has(token.toUpperCase())) {
