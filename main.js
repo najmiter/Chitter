@@ -1,5 +1,6 @@
 const Chitter = {
       asm: {
+            operators: new Set(["+", "-", "/", "*", "[", "]"]),
             arithmetics: new Set([
                 "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
             ]),
@@ -34,7 +35,7 @@ const razor = (string) => {
 
     for (let i = 0; i < string.length; i++) {
         const char = string.charAt(i);
-        if (char === " " || char === "\t") {
+        if (char === " " || char === "\t" || Chitter.asm.operators.has(char)) {
             if (word !== "") array.push(word);
             array.push(char);
             word = "";
@@ -74,6 +75,7 @@ hightlight_btn.addEventListener("click", () => {
                 klass = "function-label";
             } else if (token.endsWith(",")) {
                 already_been_added = true;
+                token.replace(",", "");
                 line_.push(
                     `<span class="registers">${token.replace(
                         ",",
@@ -99,7 +101,7 @@ hightlight_btn.addEventListener("click", () => {
                                     `<span class="function-label">${t}</span>`
                                 );
                         }
-                        break;
+                        break; // no need to check further (if anything's left)
                     }
                 }
             }
