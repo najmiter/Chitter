@@ -1,6 +1,6 @@
 const Chitter = {
       asm: {
-            operators: new Set(["+", "-", "/", "*", "[", "]", '"', "'",]),
+            operators: new Set(["+", "-", "/", "*", "[", "]", '"', "'", ',',]),
             arithmetics: new Set([
                 "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
             ]),
@@ -85,7 +85,6 @@ hightlight_btn.addEventListener("click", () => {
             } else if (token === '"' || token === "'") {
                 const quote = token;
                 klass = "constant";
-                
                 while (tokens[++i] !== quote && i < tokens.length) {
                     token += tokens[i];
                 }
@@ -121,7 +120,7 @@ hightlight_btn.addEventListener("click", () => {
         }
 
         const newbie = document.createElement("code");
-        newbie.innerHTML = line_.join(" ") + "<br>";
+        newbie.innerHTML = line_.join("") + "<br>";
 
         DOM.push(newbie);
     }
