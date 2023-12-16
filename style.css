@@ -75,7 +75,7 @@ textarea {
 
 code {
 	display: block;
-	font-family: 'Cascadia Code', monospace;
+	font-family: 'Cascadia Code', 'Roboto Mono', monospace;
 }
 
 .constant {
@@ -115,4 +115,8 @@ code {
 .registers {
 	color: #fdad54;
 	font-style: italic;
+}
+
+.operators {
+	color: #a492f7;
 }
