@@ -2,6 +2,8 @@
 ---------------------------
 Highlight and make copyable rich text of your code.
 
+[Check it here](https://najmiter.github.io/Chitter/)
+
 ### Updates:
 * You can now give input and get highlighted code on the other side:
     * TODO:
