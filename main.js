@@ -1,6 +1,6 @@
 const Chitter = {
       asm: {
-            operators: new Set(["+", "-", "/", "*", '(', ')', "[", "]", '"', "'", ',', '.', '=', '==', '<', '>', '!', '!=', '<=', '>=',]),
+            operators: new Set(["+", "-", "/", "*", '(', ')', "[", "]", '"', "'", ',', '.', '=', '==', '<', '>', '!', '!=', '<=', '>=', '+=', '-=', '*=', '/=', '%=', '&', '&&', '|', '||', '^', '~', ]),
             arithmetics: new Set([
                 "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
             ]),
@@ -97,7 +97,17 @@ hightlight_btn.addEventListener("click", () => {
                     }</span>`
                 );
                 spaces = "";
-                continue;
+                already_been_added = true;
+            } else if (token.toLowerCase() === "include") {
+                line_.push(`${spaces}<span class="criticals">${token}</span>`);
+
+                spaces = "";
+                klass = "constant";
+
+                token = "";
+                while (i < tokens.length) {
+                    token += tokens[++i] ?? "";
+                }
             } else {
                 for (const key of Object.keys(Chitter.asm)) {
                     if (Chitter.asm[key].has(token.toUpperCase())) {
