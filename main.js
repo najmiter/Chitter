@@ -56,7 +56,6 @@ hightlight_btn.addEventListener("click", () => {
 
     for (const line of code) {
         const tokens = razor(line);
-
         const line_ = [];
 
         let spaces = "";
@@ -76,7 +75,6 @@ hightlight_btn.addEventListener("click", () => {
                 klass = "function-label";
             } else if (token.endsWith(",")) {
                 already_been_added = true;
-                token.replace(",", "");
                 line_.push(
                     `<span class="registers">${token.replace(
                         ",",
