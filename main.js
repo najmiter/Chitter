@@ -16,7 +16,7 @@ const Chitter = {
                   "OFFSET", "PTR"
             ]),
             datatypes: new Set([
-                  "BYTE", "WORD", "DWORD", "QWORD", "DB", "DW", "DD", "DQ", "REAL"
+                  "BYTE", "WORD", "DWORD", "QWORD", "DB", "DW", "DD", "DQ", "REAL", "RESB", "RESW", "RESD", "RESQ", 
             ]),
             jumps: new Set([
                   "JMP", "JE", "JNE", "JG", "JGE", "JL", "JLE", "JZ", "JNZ", "JS", "JNS", "JC", "JNC", "JB", "JA", "CALL", "INVOKE",
