@@ -5,7 +5,7 @@ const Chitter = {
                 "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
             ]),
             criticals: new Set([
-                  "RET", "PROC", "ENDP", "END", "INCLUDE",
+                  "RET", "PROC", "ENDP", "END", "INCLUDE", "SECTION", 
             ]),
             instructions: new Set([
                   "MOV", "MOVS", "MOVSX", "MOVZX", "CMP",
