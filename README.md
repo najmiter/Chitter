@@ -11,7 +11,7 @@ Highlight and make copyable rich text of your code.
         - [x] Keep the original spacing in the output as it is in the input.
         - [x] Highlight registers when used with other operators (`[eax]`, `[ebx+esi]`, etc).
         - [x] Highlight string literals (single and double quotes).
-        - [x] Support HEX, BIN, and OCT notations.
+        - [x] Support HEX, DEC, OCT, and BIN notations.
         - [ ] Add comments support (single/multi line).
            - [x] Single line
            - [ ] Multi line
