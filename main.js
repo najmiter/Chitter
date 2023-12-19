@@ -35,6 +35,12 @@ const razor = (string) => {
 
     for (let i = 0; i < string.length; i++) {
         const char = string.charAt(i);
+        if (char === ";") {
+            if (word !== "") array.push(word);
+            array.push(char);
+            word = string.substring(i);
+            break;
+        }
         if (char === " " || char === "\t" || Chitter.asm.operators.has(char)) {
             if (word !== "") array.push(word);
             array.push(char);
@@ -70,7 +76,10 @@ hightlight_btn.addEventListener("click", () => {
                 continue;
             }
 
-            if (!isNaN(token)) {
+            if (token === ";") {
+                token = tokens[++i] ?? "";
+                klass = "comment";
+            } else if (!isNaN(token[0])) {
                 klass = "constant";
             } else if (token.endsWith(":")) {
                 klass = "function-label";
