@@ -137,7 +137,7 @@ hightlight_btn.addEventListener("click", () => {
                                     i += 1;
                                 }
 
-                                t = tokens[i];
+                                t = tokens[i] + (tokens[++i] ?? ""); // possibly contains a dot before the name
                                 if (t)
                                     line_.push(
                                         `${spaces}<span class="function-label">${t}</span>`
