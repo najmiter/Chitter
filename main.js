@@ -32,7 +32,7 @@ const Chitter = {
 const notation_ok = (token) => {
     token = token.toLowerCase();
     return (
-        !isNaN(token.charAt(token.length - 1)) ||
+        (!isNaN(token.charAt(token.length - 1)) && !isNaN(token)) || // because then all of it should be a number
         token.endsWith("d") ||
         token.endsWith("b") ||
         token.endsWith("h")
