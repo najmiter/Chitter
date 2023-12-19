@@ -31,7 +31,7 @@ const Chitter = {
 
 const notation_ok = (token) => {
     token = token.toLowerCase();
-    return token.endsWith("d") || token.endsWith("b") || token.endsWith("h");
+    return !isNaN(token.charAt(token.length-1)) || token.endsWith("d") || token.endsWith("b") || token.endsWith("h");
 };
 
 const razor = (string) => {
