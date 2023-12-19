@@ -29,6 +29,11 @@ const Chitter = {
       }
 }
 
+const notation_ok = (token) => {
+    token = token.toLowerCase();
+    return token.endsWith("d") || token.endsWith("b") || token.endsWith("h");
+};
+
 const razor = (string) => {
     let array = [];
     let word = "";
@@ -79,7 +84,7 @@ hightlight_btn.addEventListener("click", () => {
             if (token === ";") {
                 token = tokens[++i] ?? "";
                 klass = "comment";
-            } else if (!isNaN(token[0])) {
+            } else if (!isNaN(token[0]) && notation_ok(token)) {
                 klass = "constant";
             } else if (token.endsWith(":")) {
                 klass = "function-label";
@@ -137,7 +142,7 @@ hightlight_btn.addEventListener("click", () => {
                                     i += 1;
                                 }
 
-                                t = tokens[i] + (tokens[++i] ?? ""); // possibly contains a dot before the name
+                                t = tokens[i] + (tokens[++i] ?? "");
                                 if (t)
                                     line_.push(
                                         `${spaces}<span class="function-label">${t}</span>`
