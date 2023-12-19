@@ -1,6 +1,6 @@
 const Chitter = {
       asm: {
-            operators: new Set(["+", "-", "/", "*", '(', ')', "[", "]", '"', "'", ',', '.', '=', '==', '<', '>', '!', '!=', '<=', '>=', '+=', '-=', '*=', '/=', '%=', '&', '&&', '|', '||', '^', '~', ]),
+            operators: new Set(["+", "-", "/", "*", '(', ')', "[", "]", '"', "'", ',', '.', '%', '=', '==', '<', '>', '!', '!=', '<=', '>=', '+=', '-=', '*=', '/=', '&', '&&', '|', '||', '^', '~', ]),
             arithmetics: new Set([
                 "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
             ]),
@@ -109,9 +109,9 @@ hightlight_btn.addEventListener("click", () => {
                 }
 
                 token += quote;
-            } else if (token === ".") {
+            } else if (token === "." || token === "%") {
                 line_.push(
-                    `${spaces}<span class="criticals">.${
+                    `${spaces}<span class="criticals">${token}${
                         tokens[++i] ?? ""
                     }</span>`
                 );
