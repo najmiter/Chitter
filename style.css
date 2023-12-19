@@ -44,12 +44,13 @@ main {
 }
 
 #input-text {
-	border-radius: 5px;
 	height: 85vh;
+	border-radius: 5px;
 	background-color: #202324;
 	outline: none;
 	border: none;
 	padding: 1rem;
+	overflow: scroll;
 }
 
 #output-text {
@@ -64,6 +65,7 @@ main {
 
 .texts {
 	width: 100%;
+	overflow: scroll;
 }
 
 textarea {
@@ -119,4 +121,8 @@ code {
 
 .operators {
 	color: #a492f7;
+}
+
+.comment {
+	color: rgb(107, 107, 107);
 }
