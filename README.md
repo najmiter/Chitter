@@ -2,7 +2,7 @@
 ---------------------------
 Highlight and make copyable rich text of your assembly code.
 
-[Check it here](https://najmiter.github.io/Chitter/)
+<a href='https://najmiter.github.io/Chitter/' target='_blank'>Check it here</a>
 
 ### Updates:
 * You can now give input and get highlighted code on the other side:
