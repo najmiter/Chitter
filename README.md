@@ -1,6 +1,6 @@
 # Chitter: a syntax highlighter for assembly
 ---------------------------
-Highlight and make copyable rich text of your code.
+Highlight and make copyable rich text of your assembly code.
 
 [Check it here](https://najmiter.github.io/Chitter/)
 
