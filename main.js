@@ -64,8 +64,7 @@ const razor = (string) => {
     return array;
 };
 
-const hightlight_btn = document.getElementById("btn-highlight");
-hightlight_btn.addEventListener("click", () => {
+const chittify = () => {
     code = document.getElementById("input-text").value.split("\n");
 
     const DOM = [];
@@ -140,14 +139,14 @@ hightlight_btn.addEventListener("click", () => {
 
                             spaces = "";
 
-                            let t = tokens[++i];
+                            let t = tokens[++i] ?? "";
                             if (t) {
                                 while (tokens[i] === " ") {
                                     spaces += " ";
                                     i += 1;
                                 }
 
-                                t = tokens[i] + (tokens[++i] ?? "");
+                                t = tokens[i] ?? "" + (tokens[++i] ?? "");
                                 if (t)
                                     line_.push(
                                         `${spaces}<span class="function-label">${t}</span>`
@@ -176,4 +175,9 @@ hightlight_btn.addEventListener("click", () => {
     DOM.forEach((e) => pre.appendChild(e));
 
     output.appendChild(pre);
-});
+};
+
+const hightlight_btn = document.getElementById("btn-highlight");
+hightlight_btn.addEventListener("click", chittify);
+
+// document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
