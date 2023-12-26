@@ -4,6 +4,7 @@
 	box-sizing: border-box;
 	color-scheme: dark;
 	line-height: 1.5;
+	scroll-behavior: smooth;
 }
 
 body {
