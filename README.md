@@ -12,7 +12,7 @@ Highlight and make copyable rich text of your assembly code.
         - [x] Highlight registers when used with other operators (`[eax]`, `[ebx+esi]`, etc).
         - [x] Highlight string literals (single and double quotes).
         - [x] Support HEX, DEC, OCT, and BIN notations.
+        - [x] Make it responsive.
         - [ ] Add comments support (single/multi line).
            - [x] Single line
            - [ ] Multi line
-        - [ ] Make it responsive.
