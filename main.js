@@ -103,7 +103,7 @@ const chittify = () => {
             } else if (token === '"' || token === "'") {
                 const quote = token;
                 klass = "constant";
-                while (tokens[++i] !== quote && i < tokens.length) {
+                while (i < tokens.length && tokens[++i] !== quote && tokens[i] !== ";") {
                     token += tokens[i];
                 }
 
