@@ -191,6 +191,7 @@ input_text.addEventListener("keydown", (btn) => {
     if (btn.key === "Tab") {
         btn.preventDefault();
         input_text.value += "     "; // 5 spaces. (might convert it into a variable that the user may set as they wish later)
+        // also, this is not what we want. bcz it only adds spaces at the end :P
     }
 });
 // document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
