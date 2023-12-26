@@ -4,7 +4,6 @@
 	box-sizing: border-box;
 	color-scheme: dark;
 	line-height: 1.5;
-
 }
 
 body {
@@ -44,6 +43,13 @@ main {
 	width: 95vw;
 }
 
+@media screen and (max-width: 860px) {
+	#two-sections {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
 #input-text {
 	height: 85vh;
 	border-radius: 5px;
@@ -65,14 +71,12 @@ main {
 }
 
 .texts {
-	width: 100%;
 	overflow: scroll;
 }
 
 textarea {
-	margin-inline: 1rem;
 	margin-trim: all;
-	width: 95%;
+	width: 100%;
 	resize: none;
 }
 
