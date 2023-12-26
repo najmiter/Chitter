@@ -151,7 +151,7 @@ const chittify = () => {
                                 }
 
                                 t = tokens[i] ?? "" + (tokens[++i] ?? "");
-                                if (t)
+                                if (t && t !== ";")
                                     line_.push(
                                         `${spaces}<span class="function-label">${t}</span>`
                                     );
