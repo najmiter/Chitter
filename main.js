@@ -180,6 +180,7 @@ const chittify = () => {
     DOM.forEach((e) => pre.appendChild(e));
 
     output.appendChild(pre);
+    window.location.href += "#output"; // for mobile users (probably some other way but for now, it is what it is)
 };
 
 const hightlight_btn = document.getElementById("btn-highlight");
