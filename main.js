@@ -103,11 +103,15 @@ const chittify = () => {
             } else if (token === '"' || token === "'") {
                 const quote = token;
                 klass = "constant";
-                while (i < tokens.length && tokens[++i] !== quote && tokens[i] !== ";") {
-                    token += tokens[i];
+                while (
+                    i < tokens.length &&
+                    tokens[++i] !== quote &&
+                    tokens[i + 1] !== ";"
+                ) {
+                    token += tokens[i] ?? "";
                 }
 
-                token += quote;
+                token += tokens[i] ?? "";
             } else if (token === "." || token === "%") {
                 line_.push(
                     `${spaces}<span class="criticals">${token}${
