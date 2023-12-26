@@ -184,6 +184,13 @@ const chittify = () => {
 };
 
 const hightlight_btn = document.getElementById("btn-highlight");
-hightlight_btn.addEventListener("click", chittify);
+const input_text = document.getElementById("input-text");
 
+hightlight_btn.addEventListener("click", chittify);
+input_text.addEventListener("keydown", (btn) => {
+    if (btn.key === "Tab") {
+        btn.preventDefault();
+        input_text.value += "     "; // 5 spaces. (might convert it into a variable that the user may set as they wish later)
+    }
+});
 // document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
