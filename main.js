@@ -25,6 +25,9 @@ const Chitter = {
                   "AL", "BL", "CL", "DL", "AH", "BH", "CH", "DH", 'AX', 'BX', 'CX',
                   'DX', 'EAX', 'EBX', 'ECX', 'EDX', 'RAX', 'RBX', 'RCX', 'RDX',
                   'DI', 'SI', 'EDI', 'ESI', 'EBP', 'ESP', 'RBP', 'RSP', 'RDI', 'RSI',
+                  "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15", 
+                  "r8b", "r8w", "r8d", "r9b", "r9w", "r9d", "r10b", "r10w", "r10d", "r11b", "r11w", "r11d", "r12b", "r12w", "r12d",
+                  "r13b", "r13w", "r13d", "r14b", "r14w", "r14d",  "r15b", "r15w", "r15d", 
             ]),
       }
 }
