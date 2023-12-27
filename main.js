@@ -25,9 +25,10 @@ const Chitter = {
                   "AL", "BL", "CL", "DL", "AH", "BH", "CH", "DH", 'AX', 'BX', 'CX',
                   'DX', 'EAX', 'EBX', 'ECX', 'EDX', 'RAX', 'RBX', 'RCX', 'RDX',
                   'DI', 'SI', 'EDI', 'ESI', 'EBP', 'ESP', 'RBP', 'RSP', 'RDI', 'RSI',
-                  "r8", "r9", "r10", "r11", "r12", "r13", "r14", "r15", 
-                  "r8b", "r8w", "r8d", "r9b", "r9w", "r9d", "r10b", "r10w", "r10d", "r11b", "r11w", "r11d", "r12b", "r12w", "r12d",
-                  "r13b", "r13w", "r13d", "r14b", "r14w", "r14d",  "r15b", "r15w", "r15d", 
+                  "R8", "R9", "R10", "R11", "R12", "R13", "R14", "R15", 
+                  "R8B", "R8W", "R8D", "R9B", "R9W", "R9D", "R10B", "R10W", "R10D", "R11B", "R11W", "R11D", 
+                  "R12B", "R12W", "R12D", "R13B", "R13W", "R13D", "R14B", "R14W", "R14D", "R15B", "R15W", "R15D",
+ 
             ]),
       }
 }
@@ -153,7 +154,7 @@ const chittify = () => {
                                     i += 1;
                                 }
 
-                                t = tokens[i] ?? "" + (tokens[++i] ?? "");
+                                t = (tokens[i] ?? "") + (tokens[++i] ?? "");
                                 if (t && t !== ";") {
                                     line_.push(
                                         `${spaces}<span class="function-label">${t}</span>`
