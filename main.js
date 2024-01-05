@@ -211,7 +211,6 @@ const chittify = () => {
     const output = document.getElementById("output-text");
     output.innerHTML = "";
     const pre = document.createElement("pre");
-    pre.style.display = "inline-block";
 
     let i = 1;
     const largest_line_number = (DOM.length + 1).toString().length;
