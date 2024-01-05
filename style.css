@@ -141,3 +141,11 @@ code {
 	color: rgb(107, 107, 107);
 	font-style: italic;
 }
+
+.line-number {
+	color: #334e66;
+	padding-right: .5rem;
+	text-align: right;
+	font-size: 90%;
+	user-select: none;
+}
