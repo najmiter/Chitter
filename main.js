@@ -186,25 +186,34 @@ const chittify = () => {
     output.appendChild(pre);
 };
 
-const hightlight_btn = document.getElementById("btn-highlight");
-const input_text = document.getElementById("input-text");
-
-hightlight_btn.addEventListener("click", chittify);
-input_text.addEventListener("keydown", (btn) => {
+const handle_tab = (btn) => {
     if (btn.key === "Tab") {
         btn.preventDefault();
 
         const start = input_text.selectionStart;
         const end = input_text.selectionEnd;
 
-        const spaces = "     ";
+        const n_spaces = 5;
+
+        const spaces = " ".repeat(n_spaces);
         input_text.value =
             input_text.value.substring(0, start) +
             spaces +
             input_text.value.substring(end);
 
-        input_text.setSelectionRange(start + 5, start + 5);
+        input_text.setSelectionRange(start + n_spaces, start + n_spaces);
     }
+};
+
+const hightlight_btn = document.getElementById("btn-highlight");
+const input_text = document.getElementById("input-text");
+const output_text = document.getElementById("output-text");
+
+hightlight_btn.addEventListener("click", chittify);
+input_text.addEventListener("keydown", handle_tab);
+output_text.addEventListener("keydown", (btn) => {
+    btn.preventDefault();
 });
+
 
 // document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
