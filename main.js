@@ -192,8 +192,9 @@ const handle_tab = (btn) => {
 
         const start = input_text.selectionStart;
         const end = input_text.selectionEnd;
-
-        const n_spaces = 5;
+        
+        const tab_size = +document.getElementById("tab-size").value;
+        const n_spaces = tab_size ? tab_size : 5;
 
         const spaces = " ".repeat(n_spaces);
         input_text.value =
