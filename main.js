@@ -151,7 +151,7 @@ const chittify = () => {
                 if (after.endsWith(":")) {
                     klass = "jumps";
                 } else {
-                    if (token === "%" && !isNaN(after) && notation_ok(after)) {
+                    if (token === "%" && notation_ok(after)) {
                         klass = "constant";
                     } else {
                         klass = "criticals";
