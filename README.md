@@ -21,4 +21,7 @@ Highlight and make copyable rich text of your assembly code.
 
 ### Preview
 The UI is not that great. Maybe. But the highlighting part works greatly 😁
-<img width="1680" alt="Screenshot 2024-01-05 at 4 12 26 PM" src="https://github.com/najmiter/Chitter/assets/85332859/509281f6-5cfb-468a-a01d-9b1c95695686">
+<figure>
+   <img width="1680" alt="Chitter preview" src="https://github.com/najmiter/Chitter/assets/85332859/1f6e11f1-7e97-4ff2-a0ff-d1fbef67b803">
+  <figcaption><code>Chitter</code> on Jan 5, 2024 (5pm)</figcaption>
+</figure>
