@@ -72,6 +72,9 @@ const chittify = () => {
     code = document.getElementById("input-text").value.split("\n");
 
     const DOM = [];
+    let is_comment = false;
+    let cmnt_char = "";
+    let da_big_cmnt = "";
 
     for (const line of code) {
         const tokens = razor(line);
@@ -83,15 +86,42 @@ const chittify = () => {
             let token = tokens[i];
             let klass = "plain";
             let already_been_added = false;
+            const nikka_token = token.toLowerCase();
 
             if (token === " " || token === "\t") {
                 spaces += token;
                 continue;
             }
 
-            if (token === ";") {
-                token = tokens[++i] ?? "";
-                klass = "comment";
+            if (is_comment && token === cmnt_char) {
+                da_big_cmnt += cmnt_char;
+                console.log(da_big_cmnt);
+                line_.push(
+                    `${spaces}<span class="comment">${da_big_cmnt}</span>`
+                );
+                is_comment = false;
+                da_big_cmnt = "";
+                cmnt_char = "";
+                continue;
+            }
+
+            if (is_comment) {
+                da_big_cmnt += token;
+                continue;
+            }
+            if (token === ";" || nikka_token === "comment") {
+                if (nikka_token === ";") {
+                    token = tokens[++i] ?? "";
+                    klass = "comment";
+                } else {
+                    is_comment = true;
+                    klass = "instructions";
+                    while (tokens[++i] === " " || tokens[i] === "\t")
+                        spaces += tokens[i];
+                    cmnt_char = tokens[i] ?? "";
+                    // console.log(cmnt_char);
+                    da_big_cmnt += cmnt_char;
+                }
             } else if (!isNaN(token[0]) && notation_ok(token)) {
                 klass = "constant";
             } else if (token.endsWith(":")) {
@@ -174,14 +204,26 @@ const chittify = () => {
         }
 
         const newbie = document.createElement("code");
-        newbie.innerHTML = line_.join("") + "<br>";
+        newbie.innerHTML = line_.join("") + "<br/>";
 
         DOM.push(newbie);
     }
     const output = document.getElementById("output-text");
     output.innerHTML = "";
     const pre = document.createElement("pre");
-    DOM.forEach((e) => pre.appendChild(e));
+    pre.style.display = "inline-block";
+
+    let i = 1;
+    const largest_line_number = (DOM.length + 1).toString().length;
+    DOM.forEach((e) => {
+        const old = e.innerHTML;
+        e.innerHTML =
+            `<span class="line-number" contenteditable="false">${(i++)
+                .toString()
+                .padStart(largest_line_number)}.</span>` + old;
+
+        pre.appendChild(e);
+    });
 
     output.appendChild(pre);
 };
@@ -198,7 +240,6 @@ const handle_tab = (btn) => {
 
         input_text.style.tabSize = n_spaces;
         output_text.style.tabSize = n_spaces;
-
         const tab = "\t";
         input_text.value =
             input_text.value.substring(0, start) +
