@@ -14,6 +14,7 @@ Highlight and make copyable rich text of your assembly code.
         - [x] Support HEX, DEC, OCT, and BIN notations.
         - [x] Make it responsive.
         - [x] Support `tab` key.
+        - [x] Support line numbers in the output (non-copiable).
         - [ ] Add comments support (single/multi line).
            - [x] Single line,
            - [ ] Multi line.
