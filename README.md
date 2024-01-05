@@ -13,7 +13,7 @@ Highlight and make copyable rich text of your assembly code.
         - [x] Highlight string literals (single and double quotes).
         - [x] Support HEX, DEC, OCT, and BIN notations.
         - [x] Make it responsive.
+        - [x] Support `tab` key.
         - [ ] Add comments support (single/multi line).
            - [x] Single line,
            - [ ] Multi line.
-        - [ ] Support `tab` key.
