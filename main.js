@@ -192,14 +192,15 @@ const handle_tab = (btn) => {
 
         const start = input_text.selectionStart;
         const end = input_text.selectionEnd;
-        
+
         const tab_size = +document.getElementById("tab-size").value;
         const n_spaces = tab_size ? tab_size : 5;
 
-        const spaces = " ".repeat(n_spaces);
+        input_text.style.tabSize = n_spaces;
+        const tab = "\t";
         input_text.value =
             input_text.value.substring(0, start) +
-            spaces +
+            tab +
             input_text.value.substring(end);
 
         input_text.setSelectionRange(start + n_spaces, start + n_spaces);
