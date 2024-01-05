@@ -197,6 +197,8 @@ const handle_tab = (btn) => {
         const n_spaces = tab_size ? tab_size : 5;
 
         input_text.style.tabSize = n_spaces;
+        output_text.style.tabSize = n_spaces;
+
         const tab = "\t";
         input_text.value =
             input_text.value.substring(0, start) +
