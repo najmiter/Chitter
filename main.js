@@ -193,8 +193,18 @@ hightlight_btn.addEventListener("click", chittify);
 input_text.addEventListener("keydown", (btn) => {
     if (btn.key === "Tab") {
         btn.preventDefault();
-        input_text.value += "     "; // 5 spaces. (might convert it into a variable that the user may set as they wish later)
-        // also, this is not what we want. bcz it only adds spaces at the end :P
+
+        const start = input_text.selectionStart;
+        const end = input_text.selectionEnd;
+
+        const spaces = "     ";
+        input_text.value =
+            input_text.value.substring(0, start) +
+            spaces +
+            input_text.value.substring(end);
+
+        input_text.setSelectionRange(start + 5, start + 5);
     }
 });
+
 // document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
