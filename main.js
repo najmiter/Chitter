@@ -147,10 +147,18 @@ const chittify = () => {
 
                 token += tokens[i] ?? "";
             } else if (token === "." || token === "%") {
+                const after = tokens[++i] ?? "";
+                if (after.endsWith(":")) {
+                    klass = "jumps";
+                } else {
+                    if (token === "%" && !isNaN(after) && notation_ok(after)) {
+                        klass = "constant";
+                    } else {
+                        klass = "criticals";
+                    }
+                }
                 line_.push(
-                    `${spaces}<span class="criticals">${token}${
-                        tokens[++i] ?? ""
-                    }</span>`
+                    `${spaces}<span class="${klass}">${token}${after}</span>`
                 );
                 spaces = "";
                 already_been_added = true;
