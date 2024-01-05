@@ -6,7 +6,7 @@ Highlight and make copyable rich text of your assembly code.
 
 ### Updates:
 * You can now give input and get highlighted code on the other side:
-    * TODO:
+    * Features & TODOS:
         - [x] Make destination registers recognised. 
         - [x] Keep the original spacing in the output as it is in the input.
         - [x] Highlight registers when used with other operators (`[eax]`, `[ebx+esi]`, etc).
