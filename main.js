@@ -212,7 +212,9 @@ const output_text = document.getElementById("output-text");
 hightlight_btn.addEventListener("click", chittify);
 input_text.addEventListener("keydown", handle_tab);
 output_text.addEventListener("keydown", (btn) => {
-    btn.preventDefault();
+    if (btn.key === "Tab") {
+        btn.preventDefault();
+    }
 });
 
 
