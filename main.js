@@ -220,14 +220,14 @@ const chittify = () => {
     output.innerHTML = "";
     const pre = document.createElement("pre");
 
-    let i = 1;
-    const largest_line_number = (DOM.length + 1).toString().length;
+    // let i = 1;
+    // const largest_line_number = (DOM.length + 1).toString().length;
     DOM.forEach((e) => {
-        const old = e.innerHTML;
-        e.innerHTML =
-            `<span class="line-number" contenteditable="false">${(i++)
-                .toString()
-                .padStart(largest_line_number)}.</span>` + old;
+        // const old = e.innerHTML;
+        // e.innerHTML =
+        //     `<span class="line-number" contenteditable="false">${(i++)
+        //         .toString()
+        //         .padStart(largest_line_number)}.</span>` + old;
 
         pre.appendChild(e);
     });
