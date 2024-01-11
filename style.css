@@ -7,6 +7,10 @@
 	scroll-behavior: smooth;
 }
 
+::-webkit-scrollbar {
+  	display: none;
+}
+
 body {
 	margin-inline: 1rem;
 }
