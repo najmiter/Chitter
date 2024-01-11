@@ -253,7 +253,7 @@ const handle_tab = (btn) => {
             tab +
             input_text.value.substring(end);
 
-        input_text.setSelectionRange(start + n_spaces, start + n_spaces);
+        input_text.setSelectionRange(start + 1, end + 1); // adding 1 bcz length of `tab`
     }
 };
 
