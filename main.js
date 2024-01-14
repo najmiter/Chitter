@@ -94,11 +94,10 @@ const chittify = () => {
             }
 
             if (is_comment && token === cmnt_char) {
-                da_big_cmnt += cmnt_char;
-                console.log(da_big_cmnt);
                 line_.push(
-                    `${spaces}<span class="comment">${da_big_cmnt}</span>`
+                    `${spaces}<span class="comment">${cmnt_char}</span>`
                 );
+
                 is_comment = false;
                 da_big_cmnt = "";
                 cmnt_char = "";
@@ -107,20 +106,32 @@ const chittify = () => {
 
             if (is_comment) {
                 da_big_cmnt += token;
+                if (i === 0) {
+                    line_.push(
+                        `${spaces}<span class="comment">${da_big_cmnt}</span>`
+                    );
+                    da_big_cmnt = "";
+                }
                 continue;
             }
             if (token === ";" || nikka_token === "comment") {
-                if (nikka_token === ";") {
+                if (token === ";") {
                     token = tokens[++i] ?? "";
                     klass = "comment";
                 } else {
+                    line_.push(
+                        `${spaces}<span class="instructions">${token}</span>`
+                    );
+                    spaces = "";
                     is_comment = true;
                     klass = "instructions";
                     while (tokens[++i] === " " || tokens[i] === "\t")
                         spaces += tokens[i];
                     cmnt_char = tokens[i] ?? "";
-                    // console.log(cmnt_char);
-                    da_big_cmnt += cmnt_char;
+                    line_.push(
+                        `${spaces}<span class="comment">${cmnt_char}</span>`
+                    );
+                    already_been_added = true;
                 }
             } else if (!isNaN(token[0]) && notation_ok(token)) {
                 klass = "constant";
@@ -268,6 +279,5 @@ output_text.addEventListener("keydown", (btn) => {
         btn.preventDefault();
     }
 });
-
 
 // document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
