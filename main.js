@@ -69,7 +69,7 @@ const razor = (string) => {
 };
 
 const chittify = () => {
-    code = document.getElementById("input-text").value.split("\n");
+    const code = document.getElementById("input-text").value.split("\n");
 
     const DOM = [];
     let is_comment = false;
