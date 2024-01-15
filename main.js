@@ -74,7 +74,6 @@ const chittify = () => {
     const DOM = [];
     let is_comment = false;
     let cmnt_char = "";
-    let da_big_cmnt = "";
 
     for (const line of code) {
         const tokens = razor(line);
@@ -94,24 +93,17 @@ const chittify = () => {
             }
 
             if (is_comment && token === cmnt_char) {
-                line_.push(
-                    `${spaces}<span class="comment">${cmnt_char}</span>`
-                );
+                line_.push(`${spaces}<span class="comment">${token}</span>`);
 
                 is_comment = false;
-                da_big_cmnt = "";
                 cmnt_char = "";
                 continue;
             }
 
             if (is_comment) {
-                da_big_cmnt += token;
-                if (i === 0) {
-                    line_.push(
-                        `${spaces}<span class="comment">${da_big_cmnt}</span>`
-                    );
-                    da_big_cmnt = "";
-                }
+                line_.push(`${spaces}<span class="comment">${token}</span>`);
+                spaces = "";
+
                 continue;
             }
             if (token === ";" || nikka_token === "comment") {
@@ -124,14 +116,14 @@ const chittify = () => {
                     );
                     spaces = "";
                     is_comment = true;
-                    klass = "instructions";
                     while (tokens[++i] === " " || tokens[i] === "\t")
                         spaces += tokens[i];
+
                     cmnt_char = tokens[i] ?? "";
                     line_.push(
                         `${spaces}<span class="comment">${cmnt_char}</span>`
                     );
-                    already_been_added = true;
+                    continue;
                 }
             } else if (!isNaN(token[0]) && notation_ok(token)) {
                 klass = "constant";
