@@ -1,37 +1,9 @@
-const Chitter = {
-      asm: {
-            operators: new Set(["+", "-", "/", "*", '(', ')', "[", "]", '"', "'", ',', '.', '%', '=', '==', '<', '>', '!', '!=', '<=', '>=', '+=', '-=', '*=', '/=', '&', '&&', '|', '||', '^', '~', ]),
-            arithmetics: new Set([
-                "ADD", "SUB", "INC", "DEC", "MUL", "IMUL", "DIV", "IDIV", "AND", "OR", "XOR", "NOT", "SHL", "SHR",
-            ]),
-            criticals: new Set([
-                  "RET", "PROC", "ENDP", "END", "INCLUDE", "SECTION", 
-            ]),
-            instructions: new Set([
-                  "MOV", "MOVS", "MOVSX", "MOVZX", "CMP",
-                  "PUSH", "POP", "PUSHAD", "POPAD",
-                  "LEA", "NOP", "HLT", "INT", "LEAVE", "CLC", "STC", "CLD", "STD", "CLI", "STI",
-                  "CMPXCHG", "XCHG", "BSWAP", "NOP", "PUSHF", "POPF", "REP", "REPE", "REPZ",
-                  "REPNE", "REPNZ", "CMC", "CWDE", "CDQ", "WAIT", "CBW", "CWD", "INTO", "IRET",
-                  "OFFSET", "PTR", "FLD", "FSTP", "SYSCALL", "USES", "COMMENT", "EQU", "GLOBAL",
-            ]),
-            datatypes: new Set([
-                  "BYTE", "WORD", "DWORD", "QWORD", "DB", "DW", "DD", "DQ", "REAL", "RESB", "RESW", "RESD", "RESQ", 
-            ]),
-            jumps: new Set([
-                  "JMP", "JE", "JNE", "JG", "JGE", "JL", "JLE", "JZ", "JNZ", "JS", "JNS", "JC", "JNC", "JB", "JA", "CALL", "INVOKE",
-            ]),
-            registers: new Set([
-                  "AL", "BL", "CL", "DL", "AH", "BH", "CH", "DH", 'AX', 'BX', 'CX',
-                  'DX', 'EAX', 'EBX', 'ECX', 'EDX', 'RAX', 'RBX', 'RCX', 'RDX',
-                  'DI', 'SI', 'EDI', 'ESI', 'EBP', 'ESP', 'RBP', 'RSP', 'RDI', 'RSI',
-                  "R8", "R9", "R10", "R11", "R12", "R13", "R14", "R15", 
-                  "R8B", "R8W", "R8D", "R9B", "R9W", "R9D", "R10B", "R10W", "R10D", "R11B", "R11W", "R11D", 
-                  "R12B", "R12W", "R12D", "R13B", "R13W", "R13D", "R14B", "R14W", "R14D", "R15B", "R15W", "R15D",
- 
-            ]),
-      }
-}
+let Chitter = {};
+fetch('./chitter.json')
+    .then(response => response.json())
+    .then(chitter => Chitter = chitter );
+
+const is_space = (char) => char === ' ' || char === '\t';
 
 const notation_ok = (token) => {
     token = token.toLowerCase();
@@ -43,33 +15,36 @@ const notation_ok = (token) => {
     );
 };
 
-const razor = (string) => {
-    let array = [];
-    let word = "";
+const razor = (line) => {
+    const array = [];
+    let word = '';
 
-    for (let i = 0; i < string.length; i++) {
-        const char = string.charAt(i);
-        if (char === ";") {
-            if (word !== "") array.push(word);
+    for (let i = 0; i < line.length; i++) {
+        const char = line.charAt(i);
+
+        if (char === ';') {
+            if (word !== '') array.push(word);
             array.push(char);
-            word = string.substring(i);
+            word = line.substring(i);
             break;
         }
-        if (char === " " || char === "\t" || Chitter.asm.operators.has(char)) {
-            if (word !== "") array.push(word);
+
+        if (is_space(char) || Chitter.asm.operators.includes(char)) {
+            if (word !== '') array.push(word);
             array.push(char);
-            word = "";
+            word = '';
             continue;
         }
+
         word += char;
     }
 
-    if (word !== "") array.push(word);
+    if (word !== '') array.push(word);
     return array;
 };
 
 const chittify = () => {
-    const code = document.getElementById("input-text").value.split("\n");
+    const code = input_text.value.split("\n");
 
     const DOM = [];
     let is_comment = false;
@@ -87,7 +62,7 @@ const chittify = () => {
             let already_been_added = false;
             const nikka_token = token.toLowerCase();
 
-            if (token === " " || token === "\t") {
+            if (is_space(token)) {
                 spaces += token;
                 continue;
             }
@@ -116,7 +91,7 @@ const chittify = () => {
                     );
                     spaces = "";
                     is_comment = true;
-                    while (tokens[++i] === " " || tokens[i] === "\t")
+                    while (is_space(tokens[++i]))
                         spaces += tokens[i];
 
                     cmnt_char = tokens[i] ?? "";
@@ -154,18 +129,17 @@ const chittify = () => {
                 if (after.endsWith(":")) {
                     klass = "jumps";
                 } else {
-                    if (token === "%" && notation_ok(after)) {
-                        klass = "constant";
-                    } else {
-                        klass = "criticals";
-                    }
+                    klass =
+                        token === "%" && notation_ok(after)
+                            ? "constant"
+                            : "criticals";
                 }
                 line_.push(
                     `${spaces}<span class="${klass}">${token}${after}</span>`
                 );
                 spaces = "";
                 already_been_added = true;
-            } else if (token.toLowerCase() === "include") {
+            } else if (nikka_token === "include") {
                 line_.push(`${spaces}<span class="criticals">${token}</span>`);
 
                 spaces = "";
@@ -177,7 +151,7 @@ const chittify = () => {
                 }
             } else {
                 for (const key of Object.keys(Chitter.asm)) {
-                    if (Chitter.asm[key].has(token.toUpperCase())) {
+                    if (Chitter.asm[key].includes(token.toUpperCase())) {
                         klass = key;
 
                         if (key === "jumps") {
