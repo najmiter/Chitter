@@ -168,9 +168,8 @@ const chittify = () => {
 
                             let t = tokens[++i] ?? "";
                             if (t) {
-                                while (tokens[i] === " ") {
-                                    spaces += " ";
-                                    i += 1;
+                                while (is_space(tokens[i])) {
+                                    spaces += tokens[i++];
                                 }
 
                                 t = (tokens[i] ?? "") + (tokens[++i] ?? "");
