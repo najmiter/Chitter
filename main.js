@@ -196,8 +196,8 @@ const chittify = () => {
 
         DOM.push(newbie);
     }
-    const output = document.getElementById("output-text");
-    output.innerHTML = "";
+
+    output_text.innerHTML = "";
     const pre = document.createElement("pre");
 
     // let i = 1;
@@ -212,7 +212,7 @@ const chittify = () => {
         pre.appendChild(e);
     });
 
-    output.appendChild(pre);
+    output_text.appendChild(pre);
 };
 
 const handle_tab = (btn) => {
