@@ -11,7 +11,7 @@ Highlight and make copyable rich text of your assembly code.
         - [x] Keep the original spacing in the output as it is in the input.
         - [x] Highlight registers when used with other operators (`[eax]`, `[ebx+esi]`, etc).
         - [x] Highlight string literals (single and double quotes).
-        - [x] Support HEX, DEC, OCT, and BIN notations.
+        - [x] Support HEX, DEC, and BIN notations.
         - [x] Make it responsive.
         - [x] Support `tab` key.
         - [x] Add comments support (single/multi line).
