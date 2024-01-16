@@ -4,7 +4,7 @@ Highlight and make copyable rich text of your assembly code.
 
 <a href='https://najmiter.github.io/Chitter/' target='_blank'>Check it here</a>
 
-### Updates:
+### ⚡️ Updates:
 * You can now give input and get highlighted code on the other side:
     * Features & TODOS:
         - [x] Make destination registers recognised. 
@@ -19,12 +19,12 @@ Highlight and make copyable rich text of your assembly code.
            - [x] Multi line.
         - [ ] Support line numbers in the output (non-copiable).
 
-### Preview
+### 🏞️ Preview
 The UI is not that great. Maybe. But the highlighting part works greatly 😁
 <figure>
    <img width="1680" alt="Chitter preview" src="https://github.com/najmiter/Chitter/assets/85332859/1f6e11f1-7e97-4ff2-a0ff-d1fbef67b803">
   <figcaption><code>Chitter</code> on Jan 5, 2024 (5pm)</figcaption>
 </figure>
 
-## Watch live coding
+## ▶️ Watch live coding
 You can watch me coding Chitter live on YouTube... [Click here](https://youtu.be/Rwkdp4TxIPU)
