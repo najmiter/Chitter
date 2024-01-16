@@ -25,3 +25,6 @@ The UI is not that great. Maybe. But the highlighting part works greatly 😁
    <img width="1680" alt="Chitter preview" src="https://github.com/najmiter/Chitter/assets/85332859/1f6e11f1-7e97-4ff2-a0ff-d1fbef67b803">
   <figcaption><code>Chitter</code> on Jan 5, 2024 (5pm)</figcaption>
 </figure>
+
+## Watch live coding
+You can watch me coding Chitter live on YouTube... [Click here](https://youtu.be/Rwkdp4TxIPU)
