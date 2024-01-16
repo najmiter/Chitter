@@ -7,16 +7,12 @@ const is_space = (char) => char === ' ' || char === '\t';
 
 const notation_ok = (token) => {
     token = token.toLowerCase();
-    const rest = token.substring(0, token.length - 1);
-    
-    if (token.endsWith("h")) {
-        token = `0x${rest}`;
-    } else if (token.endsWith("b")) {
-        token = `0b${rest}`;
-    } else if (token.endsWith("d")) {
-        token = rest;
-    }
-    return !isNaN(token);
+    return (
+        (!isNaN(token.charAt(token.length - 1)) && !isNaN(token)) || // because then all of it should be digits
+        token.endsWith("d") ||
+        token.endsWith("b") ||
+        token.endsWith("h")
+    );
 };
 
 const razor = (line) => {
