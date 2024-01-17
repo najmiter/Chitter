@@ -222,7 +222,7 @@ const chittify = () => {
     output_text.appendChild(pre);
 };
 
-const handle_tab = (btn) => {
+const handle_key_down = (btn) => {
     if (btn.key === "Tab") {
         btn.preventDefault();
 
@@ -248,8 +248,22 @@ const hightlight_btn = document.getElementById("btn-highlight");
 const input_text = document.getElementById("input-text");
 const output_text = document.getElementById("output-text");
 
+const keys_pressed = {};
+
+document.addEventListener("keydown", (btn) => {
+    keys_pressed[btn.key] = true;
+
+    if (keys_pressed["Control"] && keys_pressed["r"]) {
+        chittify();
+    }
+});
+
+document.addEventListener("keyup", (btn) => {
+    delete keys_pressed[btn.key];
+});
+
 hightlight_btn.addEventListener("click", chittify);
-input_text.addEventListener("keydown", handle_tab);
+input_text.addEventListener("keydown", handle_key_down);
 output_text.addEventListener("keydown", (btn) => {
     if (btn.key === "Tab") {
         btn.preventDefault();
