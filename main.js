@@ -142,6 +142,13 @@ const chittify = () => {
                     `${spaces}<span class="${klass}">${token}${after}</span>`
                 );
                 spaces = "";
+                if (after === "include") {
+                    while (is_space(tokens[++i])) spaces += tokens[i];
+                    token = tokens[i++] ?? "";
+                    line_.push(
+                        `${spaces}<span class="constant">${token}</span>`
+                    );
+                }
                 already_been_added = true;
             } else if (nikka_token === "include") {
                 line_.push(`${spaces}<span class="criticals">${token}</span>`);
