@@ -3,6 +3,11 @@ fetch('./chitter.json')
     .then(response => response.json())
     .then(chitter => Chitter = chitter );
 
+let Settings = {};
+fetch("./settings.json")
+    .then((response) => response.json())
+    .then((settings) => (Settings = settings));
+
 const is_space = (char) => char === ' ' || char === '\t';
 
 const notation_ok = (token) => {
@@ -230,7 +235,8 @@ const handle_key_down = (btn) => {
         const end = input_text.selectionEnd;
 
         const tab_size = +document.getElementById("tab-size").value;
-        const n_spaces = tab_size ? tab_size : 5;
+        Settings.tab_size = tab_size ? tab_size : 5;
+        const n_spaces = Settings.tab_size;
 
         input_text.style.tabSize = n_spaces;
         output_text.style.tabSize = n_spaces;
