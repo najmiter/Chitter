@@ -14,7 +14,7 @@ fetch("./settings.json")
     .then((response) => response.json())
     .then((settings) => (Settings = settings));
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
     // i forgot how to do it like a fire-emoji
     // so i'm gonna do it like a sad-emoji
     setTimeout(() => {
@@ -22,10 +22,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         input_text.style.tabSize = n_spaces;
         output_text.style.tabSize = n_spaces;
+        
+        output_text.innerHTML = localStorage.getItem("styled_code") ?? "";
+        input_text.value = localStorage.getItem("plain_code") ?? "";
     }, 100);
 
-    output_text.innerHTML = localStorage.getItem("styled_code") ?? "";
-    input_text.value = localStorage.getItem("plain_code") ?? "";
 });
 
 const is_space = (char) => char === " " || char === "\t";
