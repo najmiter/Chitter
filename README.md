@@ -17,6 +17,7 @@ Highlight and make copyable rich text of your assembly code.
         - [x] Add comments support (single/multi line).
            - [x] Single line,
            - [x] Multi line.
+        - [x] Keep the previous data after a reload/revisit.
         - [ ] Support line numbers in the output (non-copiable).
 
 ### 🏞️ Preview
