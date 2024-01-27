@@ -1,19 +1,39 @@
+const hightlight_btn = document.getElementById("btn-highlight");
+const input_text = document.getElementById("input-text");
+const output_text = document.getElementById("output-text");
+
+const keys_pressed = {};
+
 let Chitter = {};
-fetch('./chitter.json')
-    .then(response => response.json())
-    .then(chitter => Chitter = chitter );
+fetch("./chitter.json")
+    .then((response) => response.json())
+    .then((chitter) => (Chitter = chitter));
 
 let Settings = {};
 fetch("./settings.json")
     .then((response) => response.json())
     .then((settings) => (Settings = settings));
 
-const is_space = (char) => char === ' ' || char === '\t';
+document.addEventListener("DOMContentLoaded", async () => {
+    // i forgot how to do it like a fire-emoji
+    // so i'm gonna do it like a sad-emoji
+    setTimeout(() => {
+        const n_spaces = +Settings.tab_size;
+
+        input_text.style.tabSize = n_spaces;
+        output_text.style.tabSize = n_spaces;
+    }, 100);
+
+    output_text.innerHTML = localStorage.getItem("styled_code") ?? "";
+    input_text.value = localStorage.getItem("plain_code") ?? "";
+});
+
+const is_space = (char) => char === " " || char === "\t";
 
 const notation_ok = (token) => {
     token = token.toLowerCase();
     const rest = token.substring(0, token.length - 1);
-    
+
     if (token.endsWith("h")) {
         token = `0x${rest}`;
     } else if (token.endsWith("b")) {
@@ -26,29 +46,29 @@ const notation_ok = (token) => {
 
 const razor = (line) => {
     const array = [];
-    let word = '';
+    let word = "";
 
     for (let i = 0; i < line.length; i++) {
         const char = line.charAt(i);
 
-        if (char === ';') {
-            if (word !== '') array.push(word);
+        if (char === ";") {
+            if (word !== "") array.push(word);
             array.push(char);
             word = line.substring(i);
             break;
         }
 
         if (is_space(char) || Chitter.asm.operators.includes(char)) {
-            if (word !== '') array.push(word);
+            if (word !== "") array.push(word);
             array.push(char);
-            word = '';
+            word = "";
             continue;
         }
 
         word += char;
     }
 
-    if (word !== '') array.push(word);
+    if (word !== "") array.push(word);
     return array;
 };
 
@@ -100,8 +120,7 @@ const chittify = () => {
                     );
                     spaces = "";
                     is_comment = true;
-                    while (is_space(tokens[++i]))
-                        spaces += tokens[i];
+                    while (is_space(tokens[++i])) spaces += tokens[i];
 
                     cmnt_char = tokens[i] ?? "";
                     line_.push(
@@ -144,8 +163,9 @@ const chittify = () => {
                             : "criticals";
                 }
                 line_.push(
-                    `${spaces}<span class="${klass}">${token}${after}</span>`
+                    `${spaces}<span class="${klass}">${token + after}</span>`
                 );
+
                 spaces = "";
                 if (after === "include") {
                     while (is_space(tokens[++i])) spaces += tokens[i];
@@ -208,8 +228,8 @@ const chittify = () => {
 
         DOM.push(newbie);
     }
-
-    output_text.innerHTML = "";
+    const output = document.getElementById("output-text");
+    output.innerHTML = "";
     const pre = document.createElement("pre");
 
     // let i = 1;
@@ -224,7 +244,17 @@ const chittify = () => {
         pre.appendChild(e);
     });
 
-    output_text.appendChild(pre);
+    output.appendChild(pre);
+};
+
+const put_shit_into_local_storage = () => {
+    localStorage.setItem("styled_code", output_text.innerHTML);
+    localStorage.setItem("plain_code", input_text.value);
+};
+
+const highlight_n_other_shit = () => {
+    chittify();
+    put_shit_into_local_storage();
 };
 
 const handle_key_down = (btn) => {
@@ -250,17 +280,11 @@ const handle_key_down = (btn) => {
     }
 };
 
-const hightlight_btn = document.getElementById("btn-highlight");
-const input_text = document.getElementById("input-text");
-const output_text = document.getElementById("output-text");
-
-const keys_pressed = {};
-
 document.addEventListener("keydown", (btn) => {
     keys_pressed[btn.key] = true;
 
     if (keys_pressed["Control"] && keys_pressed["r"]) {
-        chittify();
+        highlight_n_other_shit();
     }
 });
 
@@ -268,12 +292,13 @@ document.addEventListener("keyup", (btn) => {
     delete keys_pressed[btn.key];
 });
 
-hightlight_btn.addEventListener("click", chittify);
+hightlight_btn.addEventListener("click", highlight_n_other_shit);
 input_text.addEventListener("keydown", handle_key_down);
 output_text.addEventListener("keydown", (btn) => {
     if (btn.key === "Tab") {
         btn.preventDefault();
     }
 });
+
 
 // document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
