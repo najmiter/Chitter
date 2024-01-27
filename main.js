@@ -14,7 +14,7 @@ fetch("./settings.json")
     .then((response) => response.json())
     .then((settings) => (Settings = settings));
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     // i forgot how to do it like a fire-emoji
     // so i'm gonna do it like a sad-emoji
     setTimeout(() => {
@@ -22,11 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         input_text.style.tabSize = n_spaces;
         output_text.style.tabSize = n_spaces;
-        
         output_text.innerHTML = localStorage.getItem("styled_code") ?? "";
         input_text.value = localStorage.getItem("plain_code") ?? "";
     }, 100);
-
 });
 
 const is_space = (char) => char === " " || char === "\t";
@@ -249,8 +247,11 @@ const chittify = () => {
 };
 
 const put_shit_into_local_storage = () => {
-    localStorage.setItem("styled_code", output_text.innerHTML);
-    localStorage.setItem("plain_code", input_text.value);
+    // more sad-emoji stuff
+    setTimeout(() => {
+        localStorage.setItem("styled_code", output_text.innerHTML);
+        localStorage.setItem("plain_code", input_text.value);
+    }, 100);
 };
 
 const highlight_n_other_shit = () => {
@@ -259,6 +260,8 @@ const highlight_n_other_shit = () => {
 };
 
 const handle_key_down = (btn) => {
+    put_shit_into_local_storage();
+
     if (btn.key === "Tab") {
         btn.preventDefault();
 
@@ -296,10 +299,10 @@ document.addEventListener("keyup", (btn) => {
 hightlight_btn.addEventListener("click", highlight_n_other_shit);
 input_text.addEventListener("keydown", handle_key_down);
 output_text.addEventListener("keydown", (btn) => {
+    put_shit_into_local_storage();
+
     if (btn.key === "Tab") {
         btn.preventDefault();
     }
 });
-
-
 // document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
