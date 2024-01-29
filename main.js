@@ -260,8 +260,6 @@ const highlight_n_other_shit = () => {
 };
 
 const handle_key_down = (btn) => {
-    put_shit_into_local_storage();
-
     if (btn.key === "Tab") {
         btn.preventDefault();
 
@@ -299,10 +297,10 @@ document.addEventListener("keyup", (btn) => {
 hightlight_btn.addEventListener("click", highlight_n_other_shit);
 input_text.addEventListener("keydown", handle_key_down);
 output_text.addEventListener("keydown", (btn) => {
-    put_shit_into_local_storage();
-
     if (btn.key === "Tab") {
         btn.preventDefault();
     }
 });
+
+setInterval(() => put_shit_into_local_storage(), 6*1000);
 // document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
