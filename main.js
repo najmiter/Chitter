@@ -250,8 +250,16 @@ const put_shit_into_local_storage = () => {
     if (keys_pressed['koi_hal_chal_hui_h']) {
         // more sad-emoji stuff
         setTimeout(() => {
-            localStorage.setItem("plain_code", input_text.value);
-            localStorage.setItem("styled_code", output_text.innerHTML);
+            if (keys_pressed['es_side_wala']) {
+                localStorage.setItem("plain_code", input_text.value);
+                keys_pressed['es_side_wala'] = false;
+            } 
+            // bcz both could've been updated
+            // so, checking them separately
+            if (keys_pressed['us_side_wala']) {
+                localStorage.setItem("styled_code", output_text.innerHTML);
+                keys_pressed['us_side_wala'] = false;
+            }
         }, 100);
 
         keys_pressed['koi_hal_chal_hui_h'] = false;
@@ -263,8 +271,10 @@ const highlight_n_other_shit = () => {
     put_shit_into_local_storage();
 };
 
-const handle_key_down = (btn) => {
+const handle_input_key_whoppin = (btn) => {
     keys_pressed['koi_hal_chal_hui_h'] = true;
+    keys_pressed['es_side_wala'] = true;
+    
     if (btn.key === "Tab") {
         btn.preventDefault();
 
@@ -300,9 +310,10 @@ document.addEventListener("keyup", (btn) => {
 });
 
 hightlight_btn.addEventListener("click", highlight_n_other_shit);
-input_text.addEventListener("keydown", handle_key_down);
+input_text.addEventListener("keydown", handle_input_key_whoppin);
 output_text.addEventListener("keydown", (btn) => {
     keys_pressed['koi_hal_chal_hui_h'] = true;
+    keys_pressed['us_side_wala'] = true;
     
     if (btn.key === "Tab") {
         btn.preventDefault();
