@@ -247,11 +247,15 @@ const chittify = () => {
 };
 
 const put_shit_into_local_storage = () => {
-    // more sad-emoji stuff
-    setTimeout(() => {
-        localStorage.setItem("styled_code", output_text.innerHTML);
-        localStorage.setItem("plain_code", input_text.value);
-    }, 100);
+    if (keys_pressed['koi_hal_chal_hui_h']) {
+        // more sad-emoji stuff
+        setTimeout(() => {
+            localStorage.setItem("plain_code", input_text.value);
+            localStorage.setItem("styled_code", output_text.innerHTML);
+        }, 100);
+
+        keys_pressed['koi_hal_chal_hui_h'] = false;
+    }
 };
 
 const highlight_n_other_shit = () => {
@@ -260,6 +264,7 @@ const highlight_n_other_shit = () => {
 };
 
 const handle_key_down = (btn) => {
+    keys_pressed['koi_hal_chal_hui_h'] = true;
     if (btn.key === "Tab") {
         btn.preventDefault();
 
@@ -297,6 +302,8 @@ document.addEventListener("keyup", (btn) => {
 hightlight_btn.addEventListener("click", highlight_n_other_shit);
 input_text.addEventListener("keydown", handle_key_down);
 output_text.addEventListener("keydown", (btn) => {
+    keys_pressed['koi_hal_chal_hui_h'] = true;
+    
     if (btn.key === "Tab") {
         btn.preventDefault();
     }
