@@ -282,7 +282,7 @@ const handle_input_key_whoppin = (btn) => {
         const end = input_text.selectionEnd;
 
         const tab_size = +document.getElementById("tab-size").value;
-        Settings.tab_size = tab_size ? tab_size : 5;
+        Settings.tab_size = tab_size ? tab_size : 4;
         const n_spaces = Settings.tab_size;
 
         input_text.style.tabSize = n_spaces;
