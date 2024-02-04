@@ -303,6 +303,10 @@ document.addEventListener("keydown", (btn) => {
     if (keys_pressed["Control"] && keys_pressed["r"]) {
         highlight_n_other_shit();
     }
+    
+    if (keys_pressed["Control"] && keys_pressed["s"]) {
+        put_shit_into_local_storage();
+    }
 });
 
 document.addEventListener("keyup", (btn) => {
