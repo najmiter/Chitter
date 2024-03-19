@@ -10,21 +10,19 @@ fetch("./chitter.json")
     .then((chitter) => (Chitter = chitter));
 
 let Settings = {};
-fetch("./settings.json")
-    .then((response) => response.json())
-    .then((settings) => (Settings = settings));
 
 document.addEventListener("DOMContentLoaded", async () => {
-    // i forgot how to do it like a fire-emoji
-    // so i'm gonna do it like a sad-emoji
-    setTimeout(() => {
-        const n_spaces = +Settings.tab_size;
+    const jwb = await fetch("./settings.json");
+    const settings = await jwb.json();
 
-        input_text.style.tabSize = n_spaces;
-        output_text.style.tabSize = n_spaces;
-        output_text.innerHTML = localStorage.getItem("styled_code") ?? "";
-        input_text.value = localStorage.getItem("plain_code") ?? "";
-    }, 100);
+    Settings = settings;
+
+    const n_spaces = +Settings.tab_size;
+
+    input_text.style.tabSize = n_spaces;
+    output_text.style.tabSize = n_spaces;
+    output_text.innerHTML = localStorage.getItem("styled_code") ?? "";
+    input_text.value = localStorage.getItem("plain_code") ?? "";
 });
 
 const is_space = (char) => char === " " || char === "\t";
@@ -247,23 +245,8 @@ const chittify = () => {
 };
 
 const put_shit_into_local_storage = () => {
-    if (keys_pressed['koi_hal_chal_hui_h']) {
-        // more sad-emoji stuff
-        setTimeout(() => {
-            if (keys_pressed['es_side_wala']) {
-                localStorage.setItem("plain_code", input_text.value);
-                keys_pressed['es_side_wala'] = false;
-            } 
-            // bcz both could've been updated
-            // so, checking them separately
-            if (keys_pressed['us_side_wala']) {
-                localStorage.setItem("styled_code", output_text.innerHTML);
-                keys_pressed['us_side_wala'] = false;
-            }
-        }, 100);
-
-        keys_pressed['koi_hal_chal_hui_h'] = false;
-    }
+    localStorage.setItem("plain_code", input_text.value);
+    localStorage.setItem("styled_code", output_text.innerHTML);
 };
 
 const highlight_n_other_shit = () => {
@@ -272,9 +255,6 @@ const highlight_n_other_shit = () => {
 };
 
 const handle_input_key_whoppin = (btn) => {
-    keys_pressed['koi_hal_chal_hui_h'] = true;
-    keys_pressed['es_side_wala'] = true;
-    
     if (btn.key === "Tab") {
         btn.preventDefault();
 
@@ -303,7 +283,7 @@ document.addEventListener("keydown", (btn) => {
     if (keys_pressed["Control"] && keys_pressed["r"]) {
         highlight_n_other_shit();
     }
-    
+
     if (keys_pressed["Control"] && keys_pressed["s"]) {
         put_shit_into_local_storage();
     }
@@ -316,13 +296,10 @@ document.addEventListener("keyup", (btn) => {
 hightlight_btn.addEventListener("click", highlight_n_other_shit);
 input_text.addEventListener("keydown", handle_input_key_whoppin);
 output_text.addEventListener("keydown", (btn) => {
-    keys_pressed['koi_hal_chal_hui_h'] = true;
-    keys_pressed['us_side_wala'] = true;
-    
     if (btn.key === "Tab") {
         btn.preventDefault();
     }
 });
 
-setInterval(() => put_shit_into_local_storage(), 6*1000);
+setInterval(() => put_shit_into_local_storage(), 6 * 1000);
 // document.getElementById("input-text").addEventListener("input", chittify); // React but O(n)
